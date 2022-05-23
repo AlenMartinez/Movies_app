@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Routes ,Route} from 'react-router-dom';
-//Route
+//Route  
 import RoutePages from '../../Pages/Routes'
 //Auth route
 import PrivateRoute from '../../../core/auth/PrivateRoute'
@@ -9,7 +9,7 @@ import PublicRoute from '../../../core/auth/PublicRoute'
 import LoginPages from '../../Pages/LoginPages'
 
 export default function NavigationRoute() {
-
+    
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <Routes>
@@ -21,7 +21,7 @@ export default function NavigationRoute() {
                             path={path}
                             element={ 
                                 <PrivateRoute>
-                                    <Component/>
+                                        <Component/>
                                 </PrivateRoute>
                             }
                         />

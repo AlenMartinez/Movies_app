@@ -1,9 +1,10 @@
-import React from 'react';
+
 import { Navigate  } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
 
 function PublicRoute({ children }) {
-    console.log('public')
-  const auth = false;
+
+  const auth = localStorage.getItem('token');
   return auth ? <Navigate to="/" />  : children;
 }
 export default PublicRoute

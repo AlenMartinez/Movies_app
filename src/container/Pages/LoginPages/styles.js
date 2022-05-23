@@ -9,14 +9,22 @@ export const styles = {
         backgroundPosition: 'center',
     },
     box:{
-        background:'#aca6a7'
+        background:'#000000eb'
     },
     boxSign:{
-        my: 8,
+        my: 18,
         mx: 4,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
        
+    },title:{
+        color: '#2985df',
+        fontWeight: 900,
+
+    },
+    inputFile: {                           
+
+        color:'white'
     }
 }

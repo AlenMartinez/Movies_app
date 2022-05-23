@@ -1,20 +1,39 @@
 import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
+
   palette: {
-    type: 'dark',
+       mode: 'dark',
     primary: {
-      main: '#fafafa',
+      main: 'rgb(41, 133, 223)',
     },
     secondary: {
-      main: '#9f6d00',
+      main: 'rgb(0, 87, 183)',
     },
     background: {
-      default: '#192231',
-      paper: '#24344d',
+      default: '#ffff',
+      paper: '#ffff',
     },
-    analogous:{
-      main: '#00829f',
+    text: {
+      secondary: 'white',
     },
-  },
+    textField: {
+        hintColor: "#ffffff",
+        floatingLabelColor: "#ffffff"
+    },
+    typography: {
+      fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+   },
+  }
 });

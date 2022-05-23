@@ -1,25 +1,83 @@
-import * as React from 'react';
-//components
-import Button from '@mui/material/Button';
+import React, {useEffect, useState} from 'react';
+//components 
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import ButtonSubmit from '../../../components/Forms/ButtonSubmit'
 //styles
 import {styles} from './styles'
 //utlis
+import {getCredentialsValidate } from '../../../core/utils'
+import { useSelector, useDispatch } from 'react-redux'
+//actions
+import {actionAlert,clearAlert, getLoginThunk} from '../../../redux'
+
+
+//accessActions
+import BasicAlerts from '../../../components/Alerts/BasicAlerts'
 
 
 const LoginPages = () => {
-  
 
+    const state = useSelector((state) => state)
+    const alertData = state.alert
+    const [helperText, setHelperText] = useState('');
+    const [loading,setLoading] = useState(false);
+    const [buttomDisabled,setButtomDisabled] = useState(true);
+    const dispatch = useDispatch()
+    const [credentials, setCredentials] = useState({
+            username: "",
+            password: "",
+    });
+
+
+    useEffect(() => {
+        if (state.access.error) {
+            dispatch(actionAlert({...state.access}))
+        }
+    },[state.access])
+
+    const handleSubmit = async (evt) => {
+        evt.preventDefault()
+        setLoading(true)
+        //fecht login
+        await dispatch(getLoginThunk(credentials))
+        //loading buttom
+        setTimeout(function() {
+            setLoading(false)
+        }, 3000);
+        setTimeout(function() {
+            dispatch(clearAlert())
+        }, 6000);
+    }; 
+
+
+    const handleChange = (evt) => {
+        const { target } = evt;
+        if ('name' in target) {
+            const { name, value } = target;
+            if(name == 'password'){
+                const userValidate = getCredentialsValidate(value)
+                setHelperText(userValidate.title)
+                setButtomDisabled(userValidate.disabled)
+            }            
+            const newValues = {
+                ...credentials,
+                [name]: value,
+                };
+
+            setCredentials(newValues);
+        }
+    }
 
     return (
-        <Grid container component="main"   noValidate
-      autoComplete="off" sx={styles.gridContainer}>
+        <Grid 
+            container
+            component="main" 
+            autoComplete="off"
+            sx={styles.gridContainer}
+            >
             <Grid
                 item
                 xs={false}
@@ -29,46 +87,61 @@ const LoginPages = () => {
             />
             <Grid />
             {/* init form */}
-            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square style={styles.box}>
+
+            <Grid item xs={12} sm={8} md={5} elevation={6} style={styles.box}>
+                <Box>
+                     {alertData.alertStatus && <BasicAlerts type={alertData.type} title={alertData.title} />}
+                </Box>
                 <Box sx={styles.boxSign}>
-                    <Typography component="h1" variant="h5">
+                    <Typography  variant="h3" style={styles.title} component="div">
                         Bienvenido
                     </Typography>
                     {/* form */}
-                    <Box component="form"   sx={{ mt: 1 }}>
+                    <Box 
+                        component="form"
+                        noValidate
+                        autoComplete="off"     
+                        onSubmit={handleSubmit} sx={{ mt: 1 }}
+                    >
+                      <Box>
                         <TextField
                             margin="normal"
-                            required
+                            variant="filled"
                             fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="none"
-                            autoFocus
+                            id="username"
+                            label="Usuario"
+                            name="username"
+                            value={credentials.user}
+                            onChange={handleChange}
+                            placeholder="Ingrese tu usuario"
+                            style={styles.inputFile}
+                            type='text'
+                           
+                            autoComplete="new-user"
                         />
                         <TextField
+                            variant="filled"
                             margin="normal"
-                            required
                             fullWidth
                             name="password"
-                            label="Password"
+                            label="Contraseña"
+                            style={styles.inputFile}   
                             type="password"
+                            helperText={helperText}
                             id="password"
-                            autoComplete="none"
-                        />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                           Iniciar Session
-                        </Button>
+                            value={credentials.password}
+                            placeholder="Ingrese tu contraseña"
+                            autoComplete="new-password"
+                            onChange={handleChange}
 
+                        />
+                            <ButtonSubmit
+                                disabled={buttomDisabled}
+                                loader={loading}
+                                title='Iniciar Session'
+                                style={{ mt: 3, mb: 2 }}
+                            />
+                    </Box>
                     </Box>
                 </Box>
             </Grid>
