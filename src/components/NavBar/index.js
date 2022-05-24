@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import {logoutAction} from '../../redux'
 import {  useDispatch } from 'react-redux'
 
-const pages = ['Favoritos'];
+const pages = [''];
 const settings = ['Cerrar Session'];
 
 const NavBar = () => {
@@ -93,7 +93,7 @@ const NavBar = () => {
               ))}
             </Menu>
           </Box>
-          d
+          
           <Typography
             variant="h5"
             noWrap
@@ -127,7 +127,7 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="User" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu

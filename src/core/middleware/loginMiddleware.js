@@ -4,7 +4,7 @@ import { createHashHistory } from "history";
 
 export const fulFilledLogin = (state, payload) => {
     if (payload.response) {
-        if(payload.response.status == 401){
+        if(payload.response.status === 401){
             state = {
                     error: true,
                     alertStatus: true,

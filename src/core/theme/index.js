@@ -11,15 +11,16 @@ export const theme = createTheme({
       main: 'rgb(0, 87, 183)',
     },
     background: {
-      default: '#ffff',
-      paper: '#ffff',
+      default: '#0a1929',
+      paper: '#0a1929',
     },
     text: {
+      primary:'#ffff',
       secondary: 'white',
     },
     textField: {
-        hintColor: "#ffffff",
-        floatingLabelColor: "#ffffff"
+        hintColor: "#ffff",
+        floatingLabelColor: "#0a1929"
     },
     typography: {
       fontFamily: [

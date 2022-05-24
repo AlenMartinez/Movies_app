@@ -1,6 +1,8 @@
 import accessReducers from './reducers/accessReducers'
+import moviesReducers from './reducers/moviesReducers'
 import alertReducers from './reducers/alertReducers'
 import {getLoginThunk} from './reducers/accessReducers'
+import {getMoviesThunk} from './reducers/moviesReducers'
 
 
 
@@ -8,7 +10,8 @@ import {getLoginThunk} from './reducers/accessReducers'
 export const Reducers = {
   reducer: {
     access: accessReducers.reducer,
-    alert: alertReducers.reducer
+    alert: alertReducers.reducer,
+    movies: moviesReducers.reducer
   },
 };
 
@@ -17,5 +20,6 @@ export const { loginAction, logoutAction, tokenVerificAction} = accessReducers.a
 export const {actionAlert, clearAlert} = alertReducers.actions
 //tunk
 export {
-  getLoginThunk
+  getLoginThunk,
+  getMoviesThunk
 };
