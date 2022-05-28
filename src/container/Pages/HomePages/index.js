@@ -68,7 +68,7 @@ const HomePages = () => {
             background: "#158as"
           }}
             >
-            <Box component="layaout">
+            <Box component="div">
                 <Container maxWidth="sm" >
                     <Typography
                     component="h4"
@@ -91,7 +91,6 @@ const HomePages = () => {
                         )) : <>Sin Datos</>}
                     </Grid>
                 </Container>
-                      
             </Box>
             <Box component='div'   sx={{ p: 2,m: 2}}>  
                 <Container maxWidth="sm" elevation={3}>

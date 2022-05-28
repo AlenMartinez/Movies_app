@@ -1,8 +1,11 @@
 import accessReducers from './reducers/accessReducers'
 import moviesReducers from './reducers/moviesReducers'
 import alertReducers from './reducers/alertReducers'
-import {getLoginThunk} from './reducers/accessReducers'
-import {getMoviesThunk} from './reducers/moviesReducers'
+//thunk
+//login and access
+import { getLoginThunk, getTokenVerifyThunk} from './thunk/access'
+//movies data
+import { getShowMoviesThunk, getMoviesThunk, getCriticsMoviesThunk, getCommentsMoviesThunk} from './thunk/movies'
 
 
 
@@ -16,10 +19,22 @@ export const Reducers = {
 };
 
 //all actions
+//login
 export const { loginAction, logoutAction, tokenVerificAction} = accessReducers.actions
-export const {actionAlert, clearAlert} = alertReducers.actions
+//alert
+export const { actionAlert, clearAlert } = alertReducers.actions
+//comments
+export const { addCommentsMovies, editCommentsMovies } = moviesReducers.actions
+
+
 //tunk
 export {
+  //login
+  getTokenVerifyThunk,
   getLoginThunk,
-  getMoviesThunk
+  //movies
+  getMoviesThunk,
+  getShowMoviesThunk,
+  getCriticsMoviesThunk,
+  getCommentsMoviesThunk
 };

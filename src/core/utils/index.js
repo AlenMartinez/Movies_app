@@ -1,8 +1,9 @@
 import {getCredentialsValidate,} from './singsValidator'
-import {getDestructUrl} from './utils'
+import {getDestructUrl, getUniqueListBy} from './utils'
 
 export {
     getCredentialsValidate,
-    getDestructUrl
+    getDestructUrl,
+    getUniqueListBy
 
 }

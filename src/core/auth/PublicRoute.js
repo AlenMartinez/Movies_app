@@ -1,6 +1,7 @@
 
+import React from 'react';
 import { Navigate  } from 'react-router-dom';
-import React, {useEffect, useState} from 'react';
+
 
 function PublicRoute({ children }) {
 

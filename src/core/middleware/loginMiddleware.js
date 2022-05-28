@@ -3,6 +3,7 @@ import { createHashHistory } from "history";
  const history = createHashHistory();
 
 export const fulFilledLogin = (state, payload) => {
+
     if (payload.response) {
         if(payload.response.status === 401){
             state = {

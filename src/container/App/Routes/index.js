@@ -7,24 +7,29 @@ import PrivateRoute from '../../../core/auth/PrivateRoute'
 import PublicRoute from '../../../core/auth/PublicRoute'
 //principal components
 import LoginPages from '../../Pages/LoginPages'
+import Dashboard from '../../Dashboard'
+import LinearProgress from '@mui/material/LinearProgress';
+
 
 export default function NavigationRoute() {
     
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div><LinearProgress color="success" /></div>}>
             <Routes>
                 <Route path="/login"  key="/login" element={<PublicRoute><LoginPages/></PublicRoute>} />
                 {
                     RoutePages.map(({ path, Component }) =>
-                        <Route
-                            key={path}
-                            path={path}
-                            element={ 
-                                <PrivateRoute>
+                        
+                            <Route
+                                key={path}
+                                path={path}
+                                element={ 
+                                    <Dashboard> 
                                         <Component/>
-                                </PrivateRoute>
-                            }
-                        />
+                                    </Dashboard>
+                                }
+                            />
+                        
                     )
                 }
             </Routes>

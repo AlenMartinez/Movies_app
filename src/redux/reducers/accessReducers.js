@@ -1,27 +1,19 @@
 
 import { createSlice } from '@reduxjs/toolkit'
-//tunk
-import { fulFilledLogin, pendingLogin, rejectedLogin } from '../../core/middleware'
-import { createAsyncThunk } from '@reduxjs/toolkit'
+//actions
 import {logoutAction} from '../actions/accessActions'
-import accessService from '../../service/accessService'
-/*-getLoginThunk
-se encarga de hacer fecht get 
-*/
-export const getLoginThunk = createAsyncThunk(
-  'get/getLogin',
-    async (data) => {
-    let {username,password} = data
-        const res = await accessService.getLoginRequest(username, password).then((response) => response.data).catch((error) => {
-        return error
-    })
-    return res
-})
+//thunk
+import { getLoginThunk,
+     getTokenVerifyThunk
+     } from '../thunk/access'
+//midd
+import { fulFilledLogin, pendingLogin, rejectedLogin } from '../../core/middleware'
 
 
-export const accessReducers = createSlice({
+const accessReducers = createSlice({
     name: 'access',
-    initialState: {},
+    initialState: {
+    },
     reducers: {
         loginAction: (state, action) => {
             return state
@@ -32,9 +24,23 @@ export const accessReducers = createSlice({
         logoutAction: (state, action) => logoutAction()
     },
     extraReducers: {
+    //login
     [getLoginThunk.pending]: (state, { payload }) => pendingLogin(state, payload ),
     [getLoginThunk.fulfilled]: (state, { payload }) => fulFilledLogin(state, payload),
     [getLoginThunk.rejected]: (state,{ payload }) => rejectedLogin(state, payload),
+    //tokens
+    [getTokenVerifyThunk.pending]: (state, { payload }) => {
+        return state
+    },
+    [getTokenVerifyThunk.fulfilled]: (state, { payload }) => {
+            if(payload.response.status)
+        state.token_status = payload
+        return state
+    },
+    [getTokenVerifyThunk.rejected]: (state,{ payload }) => {
+        localStorage.clear()
+        return state
+    },
   }
 
 })

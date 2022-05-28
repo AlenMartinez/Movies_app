@@ -1,18 +1,7 @@
 import axios from "axios";
 import {API_URL} from './constants'
 
-
-
-const register = (username, email, password) => {
-
-  return axios.post(API_URL + "signup", {
-    username,
-    email,
-    password,
-  });
-};
-
-
+//login
 const getLoginRequest = async (username, password) => {
   return await axios.post(`${API_URL}/token/`, {
       username,
@@ -21,6 +10,13 @@ const getLoginRequest = async (username, password) => {
 
 };
 
+//token verific
+const getTokenVerifyRequest = async (token) => {
+  return await axios.post(`${API_URL}/token/verify/`, {
+  "token": token
+})
+
+};
 
 const logout = () => {
   localStorage.removeItem("user");
@@ -29,7 +25,7 @@ const logout = () => {
 
 
 const accessService = {
-  register,
+  getTokenVerifyRequest,
   getLoginRequest,
   logout,
 };

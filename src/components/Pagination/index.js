@@ -2,7 +2,7 @@ import * as React from 'react';
 import TablePagination from '@mui/material/TablePagination';
 
 export default function Pagination({page,rowsPerPage,handleChangePage,handleChangeRowsPerPage,count}) {
-  console.log(count,'count',page)
+
   return (
     <TablePagination
       component="div"

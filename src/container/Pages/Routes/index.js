@@ -1,6 +1,8 @@
 import  {lazy} from 'react'
 
 const HomePages = lazy(() => import('../HomePages'));
+const MoviePages = lazy(() => import('../MoviePages'));
+
 
 const RoutePages = [
     {
@@ -8,6 +10,10 @@ const RoutePages = [
         Component: HomePages,
         exact: true,
     },
+    {
+        path: `/movie/:id`,
+        Component: MoviePages,
+    }
 ];
 
 
