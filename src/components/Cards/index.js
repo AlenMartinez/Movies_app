@@ -18,13 +18,13 @@ const Cards = ({id,title,loading,labels}) =>{
                      key={id} 
                     >
                     {/* Title */}
-                    <CardContent sx={{ flexGrow: 1, background:'#001e3c'}}>
+                    <CardContent sx={{ flexGrow: 1, background:'#2190ff8c'}}>
                         <Typography gutterBottom variant="h5" component="h2">
                         {title}
                         </Typography>
                     </CardContent>
                     {/* Tags */}
-                    <Box  sx={{  background:'#001e3c',padding:2}}>
+                    <Box  sx={{  background:'#1764b1a6',padding:2}}>
                         <Tags  key={id}  labels={labels}/>
                     </Box>
                     {/* Action button */}

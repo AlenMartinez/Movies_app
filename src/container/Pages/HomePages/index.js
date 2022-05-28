@@ -92,9 +92,9 @@ const HomePages = () => {
                     </Grid>
                 </Container>
             </Box>
-            <Box component='div'   sx={{ p: 2,m: 2}}>  
+            <Box component='div'   sx={{ p: 2,m: 2, mt: 10,background:'#3c90e214'}}     >  
                 <Container maxWidth="sm" elevation={3}>
-                    <Grid container >
+                    <Grid container  >
                         <Pagination
                             handleChangeRowsPerPage={handleChangeRowsPerPage}
                             handleChangePage={handleChangePage}
