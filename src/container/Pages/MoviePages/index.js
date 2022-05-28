@@ -10,7 +10,6 @@ import BasicTabs from '../../../components/TabPanel'
 import {getShowMoviesThunk, getCriticsMoviesThunk, getCommentsMoviesThunk} from '../../../redux'
 import { useParams } from "react-router-dom";
 import { getUniqueListBy } from '../../../core/utils'
-
 const MoviePages = () => {
     let paramsUrl = useParams();
     const dispach = useDispatch()

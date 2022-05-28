@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import PeopleList from '../../components/PeopleList'
 import Comments from '../../components/Comments'
+import { dataCardsVerific } from '../../core/utils'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -59,12 +60,12 @@ export default function BasicTabs({ labels, comments, critics,setComment }) {
           </Box>
             <TabPanel value={value} index={0} >
                 <Box style={{overflow: 'auto', height: 400}}>
-                  {comments.length === 0 ? <>Sin comentarios </> : comments.map((comment) => <PeopleList name={comment.usuario} description={comment.mensaje} id={comment.id} loading={loading}/>)}
+                  {!dataCardsVerific(comments) ? <> Sin comentarios </> : comments.map((comment) => <PeopleList name={comment.usuario} description={comment.mensaje} id={comment.id} loading={loading}/>)}
                 </Box>
               <Comments  setLoading={setLoading} />
         </TabPanel>
         <TabPanel value={value} index={1} style={{overflow: 'auto', height: 400}}>
-                {critics.length === 0 ? <> Sin Criticas </> : critics.map((critic) => <PeopleList name={critic.usuario} description={critic.mensaje} />) }
+                {!dataCardsVerific(critics) ? <> Sin Criticas </> : critics.map((critic) => <PeopleList name={critic.usuario} description={critic.mensaje} />) }
       </TabPanel>
     </Box>
   );

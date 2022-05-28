@@ -43,6 +43,9 @@ const moviesReducers = createSlice({
           return state
         },
         [getCriticsMoviesThunk.fulfilled]: (state, { payload }) => {
+          if(!payload.response.data){
+            return {}
+          }
           state.movie_critics = payload
           return state
         },

@@ -7,6 +7,7 @@ import Cards from '../../../components/Cards'
 import Pagination from '../../../components/Pagination'
 import Typography from '@mui/material/Typography';
 import {getMoviesThunk} from '../../../redux'
+import { dataCardsVerific } from '../../../core/utils'
 
 const HomePages = () => {
     const dispatch = useDispatch()
@@ -24,7 +25,7 @@ const HomePages = () => {
     }, [])
 
     useEffect(()  =>{
-        if(Object.keys(dataCards).length == 0){
+        if(!dataCardsVerific(dataCards)){
             if ('data' in state) {
                 let newData = state.data
                 setDataCards(newData.results)
@@ -86,7 +87,7 @@ const HomePages = () => {
             <Box component='div'>
              <Container >
                     <Grid container spacing={4}>
-                        {Object.keys(dataCards).length > 0 ? dataCards.map((card) => (
+                        {dataCardsVerific(dataCards) ? dataCards.map((card) => (
                             <Cards id={card.id} title={card.titulo} loading={getPaginate} labels={card.etiquetas}/>
                         )) : <>Sin Datos</>}
                     </Grid>
@@ -95,6 +96,7 @@ const HomePages = () => {
             <Box component='div'   sx={{ p: 2,m: 2, mt: 10,background:'#3c90e214'}}     >  
                 <Container maxWidth="sm" elevation={3}>
                     <Grid container  >
+                        {countPaginate > 0 &&
                         <Pagination
                             handleChangeRowsPerPage={handleChangeRowsPerPage}
                             handleChangePage={handleChangePage}
@@ -102,6 +104,7 @@ const HomePages = () => {
                             page={page}
                             count={countPaginate}
                         /> 
+                        }
                     </Grid>
                 </Container>
             </Box>

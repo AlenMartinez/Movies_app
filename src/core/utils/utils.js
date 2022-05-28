@@ -18,3 +18,9 @@ export const getDestructUrl = (url) => {
 export const  getUniqueListBy = (arr, key) => {
     return [...new Map(arr.map(item => [item[key], item])).values()]
 }
+
+export const dataCardsVerific = (data) =>{
+    if (Object.keys(data).length > 1)  return true
+    else  return false
+   
+}
